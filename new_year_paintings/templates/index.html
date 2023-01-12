@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>New Year Paintings</title>
+<script>
+  function showLoadingText() {
+    document.getElementById('submit-button').style.display = 'none';
+    document.getElementById('loading-text').style.display = 'block';
+  }
+
+  window.onload = function() {
+    document.getElementById('loading-text').style.display = 'none';
+    document.getElementById('user-info').style.display = 'block';
+  }
+</script>
+</head>
+<body>
+<div style="max-width: 800px; margin: 0 auto; padding: 0 16px;">
+  <style>
+  form {
+    margin-bottom: 40px;
+  }
+</style>
+     <form id="generate-form" method="post" onsubmit="showLoadingText()">
+     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <label for="keyword">Keyword:</label>
+        <input type="text" id="keyword" name="keyword" required>
+        <br>
+        <label for="painting_style">Painting Style:</label>
+        <select id="painting_style" name="painting_style" required>
+            <option value="">Select</option>
+            <option value="anime">Anime</option>
+            <option value="realism">Realism</option>
+            <option value="pixel">Pixel</option>
+            <!-- Add more options here -->
+        </select>
+        <br>
+        <button type="submit" id="submit-button">Generate</button>
+    </form>
+
+<div id="loading-text" style="display: none;">Loading...</div>
+{% if message %}
+    <div id="result">
+        <img id="painting" src="/media/new_year_paintings/rabbit.jpg" >
+        <p id="message">{{message}}</p>
+    </div>
+{% endif %}
+</div>
+</body>
+</html>

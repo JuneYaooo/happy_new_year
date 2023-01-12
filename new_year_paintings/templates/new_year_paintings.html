@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Year Paintings</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'generate_painting' %}">
+        {% csrf_token %}
+        <label for="keyword">Keyword:</label>
+        <input type="text" name="keyword">
+        <br>
+        <label for="painting_type">Painting Type:</label>
+        <select name="painting_type">
+            <option value="古风">古风</option>
+            <option value="二次元">二次元</option>
+            <option value="写实风格">写实风格</option>
+            <!-- other options -->
+        </select>
+        <br>
+        <input type="submit" value="Generate">
+    </form>
+</body>
+</html>
